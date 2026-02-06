@@ -53,6 +53,7 @@ Ticket writeups include:
 ```text
 windows-user-profile-troubleshooting/
 ├─ README.md
+├─ docs/
 ├─ tickets/
 │ ├─ TKT-0021-temp-profile.md
 │ ├─ TKT-0022-profile-corruption.md
