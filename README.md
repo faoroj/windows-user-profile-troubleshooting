@@ -39,7 +39,7 @@ Each issue is documented as an individual ticket to mirror real IT workflows.
 | TKT-0023 | Login failure caused by profile or permission issues |
 | TKT-0024 | User unable to sign in due to system or policy misconfiguration |
 
-Ticket writeups include:
+Ticket write-ups include:
 - User-reported symptoms
 - Initial triage steps
 - Evidence (logs and screenshots)
@@ -54,6 +54,7 @@ Ticket writeups include:
 windows-user-profile-troubleshooting/
 ├─ README.md
 ├─ docs/
+│ ├─ environment-setup.md
 ├─ tickets/
 │ ├─ TKT-0021-temp-profile.md
 │ ├─ TKT-0022-profile-corruption.md
