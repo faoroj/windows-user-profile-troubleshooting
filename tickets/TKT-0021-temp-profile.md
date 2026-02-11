@@ -1,100 +1,127 @@
-# TKT-0021 – Temporary Profile Issue (itp-user01)
+# TKT-0021 – User Logged Into Temporary Profile
 
-## Issue Overview
-User itp-user01 reported that after logging in, their desktop appeared reset, and personal files were missing. The environment did not retain changes after logout. Investigation confirmed Windows was loading a temporary profile instead of the user’s original profile.
-
-System Details:
-Device: ITP-ENDPOINT-01
-OS: Windows 11 Enterprise Evaluation
-Account Type: Local Standard User
+## Summary
+User reported that their desktop environment appeared reset and personal files were missing after signing in. The issue was caused by Windows loading a temporary profile instead of the user’s original profile.
 
 ---
 
-## Symptoms
-- Default desktop and Start menu
-- Missing user files and settings
-- Changes did not persist after logout
+## Environment
+- Device: ITP-ENDPOINT-01
+- OS: Windows 11 Enterprise Evaluation
+- User: itp-user01
+- Account Type: Local Standard User
 
-Command output confirmed temporary profile usage:
+---
+
+## User Reported Symptoms
+- Default desktop and Start menu after login
+- User data appeared missing
+- Environment did not persist after logout
+
+---
+
+## Initial Triage
+- Confirmed user successfully authenticated
+- Verified abnormal profile behavior after login
+- Checked active profile path using:
 
 echo %USERPROFILE%
-C:\Users\TEMP
+- Result showed: C:\Users\TEMP
 
 Evidence:
-../evidence/screenshots/temp-profile/temp-userprofile-path.png
-../evidence/screenshots/temp-profile/desktop-reset.png
+- `evidence/screenshots/temp-profile/temp-userprofile-path.png`
+- `evidence/screenshots/temp-profile/desktop-reset.png`
 
 ---
 
 ## Investigation
 
-Profile directory review at:
-C:\Users
+### Profile Folder State
+Reviewed:
 
+C:\Users
 Findings:
-- Original profile renamed: itp-user01.old
-- Temporary profile folder created: TEMP
+- Original profile folder renamed (`itp-user01.old`)
+- Temporary profile folder created (`TEMP`)
 
 Evidence:
-../evidence/screenshots/temp-profile/users-folder-temp.png
+- `evidence/screenshots/temp-profile/users-folder-temp.png`
 
-Event Viewer Analysis:
-Event Viewer → Windows Logs → Application  
+---
+
+### Event Viewer Analysis
+Location:
+
+Windows Logs → Application
 Source: User Profile Service
-
 Findings:
-- Errors indicating Windows could not load the local user profile
+- Errors indicating failure to load local user profile
 - System logged the user into a temporary profile
 
 Evidence:
-../evidence/screenshots/temp-profile/user-profile-service-error.png
+- `evidence/screenshots/temp-profile/user-profile-service-error.png`
+- Full log export:
 
-Full log:
-../evidence/logs/eventviewer-exports/temp-profile-user-profile-service.evtx
+evidence/logs/eventviewer-exports/temp-profile-user-profile-service.evtx
 
 ---
 
 ## Root Cause
-The user profile directory name did not match the path configured in the Windows ProfileList registry. Because the expected directory (C:\Users\itp-user01) was unavailable, Windows failed to load the original profile and created a temporary profile.
+The original user profile directory name did not match the path referenced in the ProfileList registry entry. Because the expected profile directory (`C:\Users\itp-user01`) was unavailable, Windows failed to load the profile and created a temporary profile.
 
 ---
 
 ## Resolution
-1. Logged in as local administrator (itp-admin01)
-2. Renamed profile directory:
-   C:\Users\itp-user01.old → C:\Users\itp-user01
-3. Verified registry mapping at:
-   HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
-   ProfileImagePath = C:\Users\itp-user01
-4. Removed temporary profile folder:
-   C:\Users\TEMP
-5. Logged in as affected user to confirm profile loaded correctly
+
+Actions performed:
+
+1. Logged in as local administrator (`itp-admin01`)
+2. Renamed original profile folder:
+
+C:\Users\itp-user01.old → C:\Users\itp-user01
+3. Verified registry path: HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+ProfileImagePath = C:\Users\itp-user01
+
+4. Removed temporary profile folder (`C:\Users\TEMP`)
+5. Logged in as the affected user to validate profile loading
 
 ---
 
 ## Verification
 
-Confirmed active profile path:
+### Profile Path
+Command:
 
 echo %USERPROFILE%
-C:\Users\itp-user01
+Result: C:\Users\itp-user01
 
-User logged out and back in multiple times. Profile loaded correctly and persisted.
 
 Evidence:
-../evidence/screenshots/temp-profile/profile-restored.png
-../evidence/screenshots/temp-profile/users-folder-after-fix.png
+- `evidence/screenshots/temp-profile/profile-restored.png`
+
+---
+
+### Persistence Test
+- User logged out and back in multiple times
+- Profile loaded each session
+
+### Final Folder State
+Evidence:
+- `evidence/screenshots/temp-profile/users-folder-after-fix.png`
 
 ---
 
 ## Impact
 - Single user affected
-- Temporary loss of access to user environment
+- Temporary loss of access to the user environment
 - No data loss (original profile preserved and restored)
 
 ---
 
-## Key Takeaways
-- Temporary profiles commonly result from profile directory or registry mismatches
-- Event Viewer (User Profile Service) is critical for diagnosing profile load failures
-- Always preserve original user data before performing profile recovery
+## Lessons / Prevention
+- Profile folder changes or corruption can cause Windows to load temporary profiles
+- Verify ProfileList registry mappings and directory consistency during troubleshooting
+- Always preserve original user data before making profile changes
+
+
+
