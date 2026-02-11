@@ -29,8 +29,8 @@ echo %USERPROFILE%
 - Result showed: C:\Users\TEMP
 
 Evidence:
-- `evidence/screenshots/temp-profile/temp-userprofile-path.png`
-- `evidence/screenshots/temp-profile/desktop-reset.png`
+- [Temporary profile path confirmation](../evidence/screenshots/temp-profile/temp-userprofile-path.png)
+- [Default desktop after temporary profile login](../evidence/screenshots/temp-profile/desktop-reset.png)
 
 ---
 
