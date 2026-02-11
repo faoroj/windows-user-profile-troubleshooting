@@ -25,3 +25,13 @@ User reported that their desktop environment appeared reset and personal files w
 - Verified abnormal profile behavior after login
 - Checked active profile path using:
 
+Evidence:
+- `evidence/screenshots/temp-profile/temp-userprofile-path.png`
+- `evidence/screenshots/temp-profile/desktop-reset.png`
+
+---
+
+## Investigation
+
+### Profile Folder State
+Reviewed:
