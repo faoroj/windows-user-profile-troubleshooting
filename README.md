@@ -34,7 +34,7 @@ Each issue is documented as an individual ticket to mirror real IT workflows.
 
 | Ticket ID | Scenario |
 |---------|---------|
-| TKT-0021 | User logged into a temporary profile |
+| TKT-0021 | [User logged into a temporary profile](tickets/TKT-0021-temp-profile.md) |
 | TKT-0022 | Corrupted local user profile prevents sign-in |
 | TKT-0023 | Login failure caused by profile or permission issues |
 | TKT-0024 | User unable to sign in due to system or policy misconfiguration |
