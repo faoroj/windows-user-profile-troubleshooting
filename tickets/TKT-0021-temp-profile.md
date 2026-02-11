@@ -105,7 +105,7 @@ Evidence:
 
 ### Final Folder State
 Evidence:
-- [Users directory after profile restoration](../evidence/screenshots/temp-profile/users-folder-after-fix.png)
+- [Users directory after profile restoration](../evidence/screenshots/temp-profile/users-folders-after-fix.png)
 
 ---
 
