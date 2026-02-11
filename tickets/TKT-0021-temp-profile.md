@@ -60,7 +60,7 @@ Findings:
 
 Evidence:
 - [User Profile Service error in Event Viewer](../evidence/screenshots/temp-profile/user-profile-service-error.png)
-- Full log export: [Event Viewer Export Log](../evidence/logs/eventviewer-exports/temp-profile-user-profile-service.evtx)
+- Full log export: [Event Viewer Export Log](../evidence/logs/temp-profile-user-profile-service.evtx)
 
 ---
 
