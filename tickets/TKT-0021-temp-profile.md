@@ -45,7 +45,7 @@ Findings:
 - Temporary profile folder created (`TEMP`)
 
 Evidence:
-- `evidence/screenshots/temp-profile/users-folder-temp.png`
+- [Users directory showing TEMP profile](../evidence/screenshots/temp-profile/users-folder-temp.png)
 
 ---
 
@@ -59,7 +59,7 @@ Findings:
 - System logged the user into a temporary profile
 
 Evidence:
-- `evidence/screenshots/temp-profile/user-profile-service-error.png`
+- [User Profile Service error in Event Viewer](../evidence/screenshots/temp-profile/user-profile-service-error.png)
 - Full log export:
 
 evidence/logs/eventviewer-exports/temp-profile-user-profile-service.evtx
@@ -97,7 +97,7 @@ Result: C:\Users\itp-user01
 
 
 Evidence:
-- `evidence/screenshots/temp-profile/profile-restored.png`
+- [Profile restored confirmation (USERPROFILE output)](../evidence/screenshots/temp-profile/profile-restored.png)
 
 ---
 
@@ -107,7 +107,7 @@ Evidence:
 
 ### Final Folder State
 Evidence:
-- `evidence/screenshots/temp-profile/users-folder-after-fix.png`
+- [Users directory after profile restoration](../evidence/screenshots/temp-profile/users-folder-after-fix.png)
 
 ---
 
@@ -122,6 +122,3 @@ Evidence:
 - Profile folder changes or corruption can cause Windows to load temporary profiles
 - Verify ProfileList registry mappings and directory consistency during troubleshooting
 - Always preserve original user data before making profile changes
-
-
-
